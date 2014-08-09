@@ -33,3 +33,15 @@ $ sudo /bin/sh ~/yqbin/yq-bin_checker.sh stop
 ```
 $ sudo /bin/sh ~/yqbin/yq-bin_checker.sh restart
 ```
+
+出力ログ
+=======
+
+* エラーログ  
+```
+/tmp/yq-bin_checker.err
+```
+* 標準ログ
+```
+/tmp/yq-bin_checker.out
+```

@@ -9,11 +9,17 @@ use LWP::Curl;
 use JSON::XS;
 use Data::Dumper;
 
+# 定数宣言
+use constant REFERER    => 'http://yq-bin.sakura.ne.jp';
+use constant GET_URL    => REFERER.'/order_select.php';
+use constant DELETE_URL => REFERER.'/order_delete.php';
+use constant FILE       => '/tmp/yq-bin_order.json';
+
 # ログ即時出力設定
 STDOUT->autoflush;
 STDERR->autoflush;
 
-# sleep間隔
+# SLEEP間隔
 our $SLEEP_INTERVAL = 1;
 
 # LWPオブジェクト作成
@@ -26,9 +32,7 @@ sub action {
     # メイン処理
 
     # SELECT API アクセス
-    my $referer = 'http://yq-bin.sakura.ne.jp';
-    my $get_url = 'http://yq-bin.sakura.ne.jp/order_select.php';
-    my $content = $lwpcurl->get($get_url, $referer);
+    my $content = $lwpcurl->get(GET_URL, REFERER);
 
     # JSON変換
     my $json = decode_json $content;
@@ -40,21 +44,19 @@ sub action {
         return 1;
     }
 
-    # debug
+    # debug log
     print Dumper $json;
 
     # データがある場合はファイルを出力
-    open(my $fh, '>', "/tmp/yq-bin_order.json") or die "Can't open file: $!";
+    open(my $fh, '>', FILE) or die "Can't open file: $!";
     # ファイル書き込みの処理
     print $fh $content;
     close($fh);
 
     # ファイル作成に成功した場合DELETE APIにアクセス
-    my $delete_url = 'http://yq-bin.sakura.ne.jp/order_delete.php';
     foreach my $data ( @$json ){
-        $delete_url .= '?id='.$data->{ID};
-        my $res = $lwpcurl->get($delete_url, $referer);
-        # debug
+        my $res = $lwpcurl->get(DELETE_URL.'?id='.$data->{ID}, REFERER);
+        # debug log
         print Dumper $res;
     }
 
