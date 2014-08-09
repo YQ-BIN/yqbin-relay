@@ -13,13 +13,13 @@ yqbin-relay
 
 * 起動  
 ```
-sudo /bin/sh yq-bin_checker.sh start
+sudo /bin/sh ~/yqbin/yq-bin_checker.sh start
 ```
 * 停止  
 ```
-sudo /bin/sh yq-bin_checker.sh stop
+sudo /bin/sh ~/yqbin/yq-bin_checker.sh stop
 ```
 * 再起動  
 ```
-sudo /bin/sh yq-bin_checker.sh restart
+sudo /bin/sh ~/yqbin/yq-bin_checker.sh restart
 ```
