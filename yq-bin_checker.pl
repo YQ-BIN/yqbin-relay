@@ -53,6 +53,9 @@ sub action {
     print $fh $content;
     close($fh);
 
+    # debug log
+    print "file write success : ".FILE."\n";
+
     # ファイル作成に成功した場合DELETE APIにアクセス
     foreach my $data ( @$json ){
         my $res = $lwpcurl->get(DELETE_URL.'?id='.$data->{ID}, REFERER);
