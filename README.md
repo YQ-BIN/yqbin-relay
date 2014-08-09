@@ -10,16 +10,26 @@ yqbin-relay
 [{"ID":"6","USERNAME":"test","START":"Apple","GOAL":"Apple","DATE":"2014-08-09 16:33:59","TEMP":null}]
 ```
 
+初期設定
+=======
+
+* 初期設定
+```
+$ make build
+```
+
+操作説明
+========
 
 * 起動  
 ```
-sudo /bin/sh ~/yqbin/yq-bin_checker.sh start
+$ sudo /bin/sh ~/yqbin/yq-bin_checker.sh start
 ```
 * 停止  
 ```
-sudo /bin/sh ~/yqbin/yq-bin_checker.sh stop
+$ sudo /bin/sh ~/yqbin/yq-bin_checker.sh stop
 ```
 * 再起動  
 ```
-sudo /bin/sh ~/yqbin/yq-bin_checker.sh restart
+$ sudo /bin/sh ~/yqbin/yq-bin_checker.sh restart
 ```
